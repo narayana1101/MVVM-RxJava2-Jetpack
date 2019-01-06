@@ -18,4 +18,12 @@ public class User extends BaseObservable {
     public String getAvatarUrl() {
         return avatarUrl;
     }
+
+    public User() {
+    }
+
+    public User(String handle, String avatarUrl) {
+        this.handle = handle;
+        this.avatarUrl = avatarUrl;
+    }
 }

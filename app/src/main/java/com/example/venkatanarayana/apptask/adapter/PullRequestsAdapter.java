@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.venkatanarayana.apptask.BR;
 import com.example.venkatanarayana.apptask.model.PullRequest;
+import com.example.venkatanarayana.apptask.room.PullRequestEntity;
 import com.example.venkatanarayana.apptask.viewmodel.PullRequestsViewModel;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PullRequestsAdapter extends RecyclerView.Adapter<PullRequestsAdapter.GenericViewHolder> {
     private int layoutId;
-    private List<PullRequest> pullRequestList;
+    private List<PullRequestEntity> pullRequestList;
     private PullRequestsViewModel viewModel;
 
     public PullRequestsAdapter(@LayoutRes int layoutId, PullRequestsViewModel viewModel) {
@@ -51,7 +52,7 @@ public class PullRequestsAdapter extends RecyclerView.Adapter<PullRequestsAdapte
         return getLayoutIdForPosition(position);
     }
 
-    public void setPullRequestList(List<PullRequest> breeds) {
+    public void setPullRequestList(List<PullRequestEntity> breeds) {
         this.pullRequestList = breeds;
     }
 

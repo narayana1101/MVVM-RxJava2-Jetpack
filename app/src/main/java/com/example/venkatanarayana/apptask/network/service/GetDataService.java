@@ -4,6 +4,7 @@ import com.example.venkatanarayana.apptask.model.PullRequest;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,6 +15,6 @@ public interface GetDataService {
 
 
     @GET("repos/{user}/{repo}/pulls")
-    Single<List<PullRequest>> getPullRequestList(@Path("user") String user, @Path("repo") String repo, @Query("state") String state);
+    Flowable<List<PullRequest>> getPullRequestList(@Path("user") String user, @Path("repo") String repo, @Query("state") String state);
 
 }

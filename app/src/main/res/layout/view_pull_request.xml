@@ -31,7 +31,7 @@
             android:layout_height="48dp"
             android:background="@drawable/list_item_image_border"
             android:scaleType="centerCrop"
-            app:imageUrl='@{viewModel.getPullRequestAt(position).user.avatarUrl}' />
+            app:imageUrl='@{viewModel.getPullRequestAt(position).imageUrl}' />
 
         <TextView
             android:id="@+id/txtName"
@@ -43,7 +43,7 @@
             android:ellipsize="end"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:text="@{viewModel.getPullRequestAt(position).description}"
+            android:text="@{viewModel.getPullRequestAt(position).title}"
             android:textSize="16dp"
             tools:text="Test" />
     </LinearLayout>

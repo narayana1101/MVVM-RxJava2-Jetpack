@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.venkatanarayana.apptask.R;
 import com.example.venkatanarayana.apptask.databinding.ActivityPendingRequestsBinding;
 import com.example.venkatanarayana.apptask.model.PullRequest;
+import com.example.venkatanarayana.apptask.room.PullRequestEntity;
 import com.example.venkatanarayana.apptask.viewmodel.PullRequestsViewModel;
 
 import java.util.List;
@@ -41,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupListUpdate() {
         viewModel.loading.set(View.VISIBLE);
         viewModel.fetchList();
-        viewModel.getPullRequests().observe(MainActivity.this, new Observer<List<PullRequest>>() {
+        viewModel.getPullRequests().observe(MainActivity.this, new Observer<List<PullRequestEntity>>() {
             @Override
-            public void onChanged(List<PullRequest> pullRequests) {
+            public void onChanged(List<PullRequestEntity> pullRequests) {
                 viewModel.loading.set(View.GONE);
                 if (pullRequests.size() == 0) {
                     viewModel.showEmpty.set(View.VISIBLE);

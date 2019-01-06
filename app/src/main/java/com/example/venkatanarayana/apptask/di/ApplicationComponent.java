@@ -14,7 +14,7 @@ import dagger.Component;
 import retrofit2.Retrofit;
 
 @Singleton
-@Component(modules = {ApplicationModule.class,UtilsModule.class})
+@Component(modules = {ApplicationModule.class,UtilsModule.class,RoomModule.class})
 public interface ApplicationComponent {
 
     void inject(GithubApp githubApp);
