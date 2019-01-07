@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.venkatanarayana.apptask.BR;
-import com.example.venkatanarayana.apptask.model.PullRequest;
 import com.example.venkatanarayana.apptask.room.PullRequestEntity;
 import com.example.venkatanarayana.apptask.viewmodel.PullRequestsViewModel;
 

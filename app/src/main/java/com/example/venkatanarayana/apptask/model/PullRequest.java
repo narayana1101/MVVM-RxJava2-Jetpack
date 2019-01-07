@@ -1,8 +1,6 @@
 package com.example.venkatanarayana.apptask.model;
 
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 import androidx.databinding.BaseObservable;

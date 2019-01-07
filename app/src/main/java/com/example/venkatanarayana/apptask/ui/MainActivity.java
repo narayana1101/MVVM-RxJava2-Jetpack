@@ -2,15 +2,15 @@ package com.example.venkatanarayana.apptask.ui;
 
 
 import android.os.Bundle;
-
 import android.view.View;
 
 import com.example.venkatanarayana.apptask.R;
 import com.example.venkatanarayana.apptask.databinding.ActivityPendingRequestsBinding;
-import com.example.venkatanarayana.apptask.model.PullRequest;
+import com.example.venkatanarayana.apptask.model.Resource;
 import com.example.venkatanarayana.apptask.room.PullRequestEntity;
 import com.example.venkatanarayana.apptask.viewmodel.PullRequestsViewModel;
 
+import java.util.Collections;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,17 +40,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupListUpdate() {
-        viewModel.loading.set(View.VISIBLE);
-        viewModel.fetchList();
-        viewModel.getPullRequests().observe(MainActivity.this, new Observer<List<PullRequestEntity>>() {
+//        viewModel.loading.set(View.VISIBLE);
+//        viewModel.fetchList();
+        viewModel.getPullRequests().observe(MainActivity.this, new Observer<Resource<List<PullRequestEntity>>>() {
             @Override
-            public void onChanged(List<PullRequestEntity> pullRequests) {
-                viewModel.loading.set(View.GONE);
-                if (pullRequests.size() == 0) {
+            public void onChanged(Resource<List<PullRequestEntity>> pullRequests) {
+                if (pullRequests.getStatus() != Resource.Status.LOADING)
+                    viewModel.loading.set(View.GONE);
+                if (pullRequests.getStatus() == Resource.Status.FAILURE || pullRequests.getValue().size() == 0) {
                     viewModel.showEmpty.set(View.VISIBLE);
+                    viewModel.setPullRequestsInAdapter(Collections.emptyList());
                 } else {
                     viewModel.showEmpty.set(View.GONE);
-                    viewModel.setPullRequestsInAdapter(pullRequests);
+                    viewModel.setPullRequestsInAdapter(pullRequests.getValue());
                 }
             }
         });

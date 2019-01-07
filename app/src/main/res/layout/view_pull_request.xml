@@ -20,7 +20,6 @@
         android:background="@drawable/list_item_bg"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{() -> viewModel.onItemClick(position)}"
         android:paddingStart="32dp"
         android:paddingTop="16dp"
         android:paddingEnd="32dp"

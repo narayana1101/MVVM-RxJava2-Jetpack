@@ -1,13 +1,9 @@
 package com.example.venkatanarayana.apptask.room;
 
-import com.example.venkatanarayana.apptask.model.PullRequest;
-
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import androidx.lifecycle.LiveData;
 import io.reactivex.Flowable;
 
 public class PullRequestDataSource {
@@ -19,17 +15,15 @@ public class PullRequestDataSource {
         this.pullRequestDao = pullRequestDao;
     }
 
-    public LiveData<List<PullRequestEntity>> getPullRequests() {
-        return pullRequestDao.getPullRequests();
+    public Flowable<List<PullRequestEntity>> getPullRequests(String repo) {
+        return pullRequestDao.getPullRequests(repo);
     }
 
-    public void insertPullRequests(PullRequestEntity... pullRequests) {
-        if (pullRequests == null || pullRequests.length==0)
-            return;
+    public void insertPullRequests(List<PullRequestEntity> pullRequests) {
         pullRequestDao.insertPullRequest(pullRequests);
     }
 
-    public void deleteAllPullRequests(){
-        pullRequestDao.delete();
+    public void deleteAllPullRequests(String repo) {
+        pullRequestDao.delete(repo);
     }
 }

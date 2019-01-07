@@ -19,8 +19,6 @@ package com.example.venkatanarayana.apptask.room;
 
 import android.content.Context;
 
-import com.example.venkatanarayana.apptask.model.PullRequest;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;

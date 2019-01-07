@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 
 import com.example.venkatanarayana.apptask.constants.APIConstants;
 import com.example.venkatanarayana.apptask.network.service.GetDataService;
+import com.example.venkatanarayana.apptask.repository.PullRequestRepository;
+import com.example.venkatanarayana.apptask.room.PullRequestDataSource;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Singleton;
@@ -47,5 +49,11 @@ public class UtilsModule {
         Picasso picasso = new Picasso.Builder(context).build();
         Picasso.setSingletonInstance(picasso);
         return picasso;
+    }
+
+    @Provides
+    @Singleton
+    PullRequestRepository providePullRequestRepository(GetDataService service, PullRequestDataSource pullRequestDataSource) {
+        return new PullRequestRepository(service, pullRequestDataSource);
     }
 }

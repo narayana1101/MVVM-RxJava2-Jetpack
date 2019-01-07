@@ -1,10 +1,7 @@
 package com.example.venkatanarayana.apptask.room;
 
-import com.example.venkatanarayana.apptask.model.PullRequest;
-
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -14,11 +11,11 @@ import io.reactivex.Flowable;
 @Dao
 public interface PullRequestDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertPullRequest(PullRequestEntity... pullRequests);
+    void insertPullRequest(List<PullRequestEntity> pullRequests);
 
-    @Query("DELETE FROM PullRequestEntity")
-    void delete();
+    @Query("DELETE FROM PullRequestEntity WHERE repo = :repo")
+    void delete(String repo);
 
-    @Query("SELECT * FROM PullRequestEntity ORDER BY created_at desc")
-    LiveData<List<PullRequestEntity>> getPullRequests();
+    @Query("SELECT * FROM PullRequestEntity WHERE repo = :repo ORDER BY created_at desc")
+    Flowable<List<PullRequestEntity>> getPullRequests(String repo);
 }

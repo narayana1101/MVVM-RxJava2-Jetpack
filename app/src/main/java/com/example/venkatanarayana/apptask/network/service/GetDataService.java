@@ -5,8 +5,6 @@ import com.example.venkatanarayana.apptask.model.PullRequest;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Single;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

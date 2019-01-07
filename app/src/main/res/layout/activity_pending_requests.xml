@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="model"
             type="com.example.venkatanarayana.apptask.viewmodel.PullRequestsViewModel" />
@@ -14,12 +14,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/path"
+                android:layout_width="0dp"
+                android:text="@={model.pathField}"
+                android:inputType="text"
+                android:maxLines="1"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/fetch"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/fetch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.fetchButton}"
+                android:onClick="@{() -> model.onItemClick()}"
+                app:layout_constraintLeft_toRightOf="@id/path"
+                app:layout_constraintRight_toRightOf="parent" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listOfPullRequests"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:visibility="@{model.recyclerViewVisible}"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/path"
             app:setAdapter="@{model.getAdapter()}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         
         <androidx.core.widget.ContentLoadingProgressBar
             style="?android:attr/progressBarStyleLarge"

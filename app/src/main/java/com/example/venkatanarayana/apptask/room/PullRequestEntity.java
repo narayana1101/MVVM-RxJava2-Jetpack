@@ -2,9 +2,6 @@ package com.example.venkatanarayana.apptask.room;
 
 import android.support.annotation.NonNull;
 
-import com.example.venkatanarayana.apptask.model.User;
-import com.google.gson.annotations.SerializedName;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -28,13 +25,17 @@ public class PullRequestEntity {
     @ColumnInfo(name = "created_at")
     String createdTime;
 
+    @ColumnInfo(name = "repo")
+    String repo;
 
-    public PullRequestEntity(long id, String title,String handle, String imageUrl,String createdTime) {
+
+    public PullRequestEntity(long id, String title,String handle, String imageUrl,String createdTime, String repo) {
         this.id = id;
         this.title = title;
         this.handle=handle;
         this.imageUrl=imageUrl;
         this.createdTime =createdTime;
+        this.repo= repo;
     }
 
     @NonNull
@@ -56,5 +57,9 @@ public class PullRequestEntity {
 
     public String getCreatedTime() {
         return createdTime;
+    }
+
+    public String getRepo() {
+        return repo;
     }
 }
