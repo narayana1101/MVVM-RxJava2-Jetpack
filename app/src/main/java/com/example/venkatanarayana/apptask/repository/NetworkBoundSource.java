@@ -25,6 +25,8 @@ public abstract class NetworkBoundSource<LocalType, RemoteType> {
     public void fetch(String user, String repo, String state) {
 
         Disposable firstDataDisposable = getLocal(user + "/" + repo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
                 .filter(filter(user + "/" + repo))
                 .map((List<LocalType> value) -> {
                     return value.size() > 0 ? Resource.success(value) : Resource.notStarted(value);
@@ -44,8 +46,8 @@ public abstract class NetworkBoundSource<LocalType, RemoteType> {
                 });
 
         getRemote(user, repo, state).flatMapIterable(flatMapIterablemapper()).map(mapper(user + "/" + repo)).toList()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
                 .filter(filter(user + "/" + repo))
                 .subscribe(new Consumer<List<LocalType>>() {
                     @Override
