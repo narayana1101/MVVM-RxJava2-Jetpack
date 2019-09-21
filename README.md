@@ -1,5 +1,5 @@
 # MVVM-RxJava2-Jetpack
-A bare-bones application which fetches open pull requests from Github using MVVM, functional reactive programming and Android jetpack components.
+A sample application which fetches open pull requests from Github using MVVM, functional reactive programming and Android jetpack components.
 
 # Brief Overview
 
